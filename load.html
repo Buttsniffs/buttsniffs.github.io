@@ -1,0 +1,140 @@
+<html>
+<head>
+<link href='fonts.googleapis.com/css?family=Luckiest+Guy|Open+Sans:800,300' rel='stylesheet' type='text/css'>
+<script src="ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<style>
+body {
+	background: #ffccaa;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.con {
+	margin: auto auto;
+	margin-top: 15%;
+	vertical-align: middle;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	line-height: 50px;
+}
+
+#t {
+	font-family: "Luckiest Guy";
+	font-size: 72pt;
+	color: #D45500;
+}
+
+#st {
+	font-family: "Open Sans";
+	font-weight: 300;
+	font-size: 32pt;
+	color: #803300;
+}
+
+.co {
+	font-family: "Open Sans";
+	font-weight: 300;
+	color: #803300;
+	font-size: 16pt;
+}
+
+#map {
+	font-family: "Open Sans";
+	font-weight: 300;
+	color: #ff6600;
+	font-size: 20pt;
+}
+
+.load {
+	width: 25%;
+	background: #ffb380;
+	height: 15px;
+	margin: 25px auto;
+}
+
+#loadb {
+	width: 0%;
+	background: #ff7f2a;
+	height: 100%;
+}
+
+#sid {
+	margin: 2.5px;
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	font-family: "Open Sans";
+	color: #803300;
+}
+
+#lm {
+	font-family: "Open Sans";
+	color: #D45500;
+	font-weight: 800;
+}
+
+#dlc {
+	color: #ff9955;
+	font-family: "Open Sans";
+	font-weight: 800;
+	text-align: right;
+}
+
+.c2 {
+	text-align: center;
+	margin: auto auto;
+	width: 25%;
+}	
+
+</style>
+<script>
+function GameDetails(srv, url, map, maxplayers, steamid, gamemode) {
+	$("#map").text(map);
+	$("#st").text(gamemode + " server");
+	$("#sid").text("You are #"+steamid);
+}
+
+function DownloadingFile(filename){
+	$("#lm").text("Downloading "+filename);
+	$("#dlc").css("hidden", false);
+}
+
+function SetStatusChanged(stat){
+	$("#lm").text(stat);
+	$("#dlc").css("hidden", true);
+}
+
+var iTotal;
+var iRemaining;
+
+function SetFilesTotal(total){
+	iTotal = total;
+	$("#dlc").text("("+(iTotal-iRemaining) + " / " + iTotal+")");
+	$("#loadb").width((((iTotal-iRemaining)/iTotal)*100)+"%");
+	$("#dlc").css("hidden", false);}
+
+function SetFilesNeeded(remaining){
+	iRemaining = remaining;
+	$("#dlc").text("("+(iTotal-iRemaining) + " / " + iTotal+")");
+	$("#loadb").width((((iTotal-iRemaining)/iTotal)*100)+"%");
+	$("#dlc").css("hidden", false);
+}
+</script>
+<body>
+<div class="con">
+	<div id="t"><img src="d1.gif"/>BUTTSNIFF&#39;S<img src="d2.gif"/></div>
+	<div id="st"></div>
+	<span class="co">(on <span id="map"></span>)</span>
+	<div class="load">
+		<div id="loadb">
+		</div>
+	</div>
+	<div class="c2">
+		<div><div id="lm"></div><span id="dlc"></span></div>
+	</div>
+</div>
+<div id="sid"></div>
+</body>
+</html>
